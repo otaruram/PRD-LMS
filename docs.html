@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRD-LMS Complete Documentation</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --paper: #161616;
+      --ink: #f2f2f2;
+      --muted: #bbbbbb;
+      --accent: #ffffff;
+      --accent-2: #d9d9d9;
+      --line: #2a2a2a;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: var(--paper);
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent-2);
+    }
+
+    .nav-item {
+      display: block;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: var(--muted);
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+    }
+
+    .nav-item:hover {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-item.active {
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 48px;
+      max-width: 1000px;
+    }
+
+    .doc-section {
+      display: none;
+    }
+
+    .doc-section.active {
+      display: block;
+    }
+
+    .doc-section h1 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .doc-section h2 {
+      font-size: 1.3rem;
+      color: var(--accent-2);
+      margin-top: 24px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    .doc-section h3 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .doc-section p {
+      color: var(--muted);
+      margin: 12px 0;
+    }
+
+    .doc-section ul, .doc-section ol {
+      color: var(--muted);
+      margin: 12px 0;
+      padding-left: 24px;
+    }
+
+    .doc-section li {
+      margin: 6px 0;
+    }
+
+    .doc-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+    }
+
+    .doc-section table th,
+    .doc-section table td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .doc-section table th {
+      background: #1a1a1a;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .doc-section code {
+      background: #1a1a1a;
+      color: #88ff88;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: "Courier New", monospace;
+      font-size: 0.9em;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--accent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--line); }
+      .content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar-header">📚 Dokumentasi</div>
+      <a class="nav-item active" onclick="showDoc(0)">00 - Docs README</a>
+      <a class="nav-item" onclick="showDoc(1)">01 - PRD Master</a>
+      <a class="nav-item" onclick="showDoc(2)">02 - Execution Plan 90 Hari</a>
+      <a class="nav-item" onclick="showDoc(3)">03 - Discord Setup</a>
+      <a class="nav-item" onclick="showDoc(4)">04 - Notion Database</a>
+      <a class="nav-item" onclick="showDoc(5)">05 - SOP Operasional</a>
+      <a class="nav-item" onclick="showDoc(6)">06 - KPI & Experiment</a>
+      <a class="nav-item" onclick="showDoc(7)">07 - Decision Memo LMS</a>
+      <a class="nav-item" onclick="showDoc(8)">08 - Go-Live Checklist</a>
+    </div>
+
+    <div class="content">
+      <!-- 00 - Docs README -->
+      <div class="doc-section active">
+        <h1>Project-Based Learning Program - MVP Operating Pack</h1>
+        <p>Dokumen ini adalah paket end-to-end untuk menjalankan program selama 90 hari tanpa membangun LMS custom.</p>
+
+        <h2>Isi Paket</h2>
+        <ol>
+          <li>01-PRD-Master.md</li>
+          <li>02-Execution-Plan-90-Hari.md</li>
+          <li>03-Discord-Setup-dan-Template.md</li>
+          <li>04-Notion-Database-Template.md</li>
+          <li>05-SOP-Operasional.md</li>
+          <li>06-KPI-Dashboard-dan-Experiment-Log.md</li>
+          <li>07-Decision-Memo-Build-LMS.md</li>
+          <li>08-Go-Live-Checklist.md</li>
+        </ol>
+
+        <h2>Cara Pakai Cepat</h2>
+        <ol>
+          <li>Baca PRD master untuk alignment lintas tim.</li>
+          <li>Jalankan setup Discord dan Notion sesuai blueprint.</li>
+          <li>Eksekusi runbook 90 hari per cohort.</li>
+          <li>Pantau KPI mingguan dan isi experiment log.</li>
+          <li>Gunakan decision memo setelah Cohort 3 untuk keputusan build LMS.</li>
+        </ol>
+
+        <h2>Asumsi Operasional</h2>
+        <ul>
+          <li>Model bisnis freemium: learning access gratis, monetisasi dari sertifikat dan mentoring intensif.</li>
+          <li>Platform MVP: Discord untuk komunitas, Notion untuk konten, tugas, dan tracking.</li>
+          <li>Siklus evaluasi: mingguan dan pasca setiap cohort.</li>
+        </ul>
+      </div>
+
+      <!-- 01 - PRD Master -->
+      <div class="doc-section">
+        <h1>PRD Master</h1>
+
+        <h2>1. Executive Summary</h2>
+        <p>Project-Based Learning Program adalah program pembelajaran berbasis proyek nyata untuk student global dengan dukungan mentor/startup member.</p>
+        <p>Pada fase MVP, program tidak membangun LMS sendiri. Operasional menggunakan:</p>
+        <ul>
+          <li>Discord: komunikasi komunitas, channel pembelajaran, role management.</li>
+          <li>Notion: learning hub, assignment, database progres, dashboard KPI.</li>
+        </ul>
+
+        <h2>2. Objective</h2>
+        <h3>Objective 90 Hari</h3>
+        <ol>
+          <li>Validasi demand internasional untuk format project-based learning.</li>
+          <li>Mencapai engagement sehat pada jalur gratis.</li>
+          <li>Membuktikan monetisasi dari sertifikat dan mentoring intensif.</li>
+          <li>Mengumpulkan data kuat untuk keputusan build atau tidak build LMS.</li>
+        </ol>
+
+        <h3>Non-Objective</h3>
+        <ol>
+          <li>Membangun LMS internal.</li>
+          <li>Mengembangkan fitur enterprise kompleks.</li>
+          <li>Integrasi tool berbiaya tinggi yang tidak kritis di fase validasi.</li>
+        </ol>
+
+        <h2>3. Target Audience dan Pain Points</h2>
+        <h3>Students</h3>
+        <p><strong>Pain points:</strong></p>
+        <ol>
+          <li>Minim pengalaman real-world.</li>
+          <li>Sulit membangun portofolio yang kredibel.</li>
+          <li>Kurang feedback praktis dan ritme belajar.</li>
+          <li>Akses mentor berkualitas terbatas.</li>
+          <li>Tidak terbiasa kolaborasi lintas timezone.</li>
+        </ol>
+
+        <h3>Mentors/Startup Members</h3>
+        <p><strong>Pain points:</strong></p>
+        <ol>
+          <li>Sulit menangani cohort besar.</li>
+          <li>Waktu mentoring terbatas.</li>
+          <li>Monitoring kualitas output tidak konsisten.</li>
+          <li>Screening peserta premium belum efisien.</li>
+          <li>Ekspektasi student sering tidak selaras.</li>
+        </ol>
+
+        <h2>4. Value Proposition</h2>
+        <h3>Untuk Students</h3>
+        <ol>
+          <li>Belajar melalui tantangan nyata.</li>
+          <li>Output portofolio yang dapat dipresentasikan.</li>
+          <li>Akses mentor praktisi.</li>
+          <li>Jalur upgrade ke mentoring intensif.</li>
+        </ol>
+
+        <h3>Untuk Mentor</h3>
+        <ol>
+          <li>Dampak edukasi terukur.</li>
+          <li>Proses mentoring lebih efisien.</li>
+          <li>Akses ke talent pipeline.</li>
+        </ol>
+
+        <h2>5. Scope MVP</h2>
+        <h3>In Scope</h3>
+        <ol>
+          <li>Onboarding peserta via form dan Discord role.</li>
+          <li>Delivery materi/tugas via Notion.</li>
+          <li>Weekly learning loop dengan checkpoint.</li>
+          <li>Tracking progres dan risk flag.</li>
+          <li>Funnel konversi ke sertifikat/mentoring premium.</li>
+          <li>Dashboard metrik inti.</li>
+        </ol>
+
+        <h3>Out of Scope</h3>
+        <ol>
+          <li>LMS custom.</li>
+          <li>AI grading otomatis penuh.</li>
+          <li>Integrasi kompleks non-prioritas.</li>
+        </ol>
+
+        <h2>6. Core Features</h2>
+        <ol>
+          <li>Role-based onboarding.</li>
+          <li>Learning hub terpusat.</li>
+          <li>Sistem assignment dan rubric.</li>
+          <li>Komunitas diskusi dan office hours.</li>
+          <li>Monitoring progres per learner.</li>
+          <li>Monetization funnel berbasis pencapaian.</li>
+        </ol>
+
+        <h2>7. End-to-End User Flow</h2>
+        <ol>
+          <li>Awareness: user melihat campaign.</li>
+          <li>Registration: isi form + segmentasi track.</li>
+          <li>Onboarding: join Discord + cek checklist.</li>
+          <li>Activation: akses Notion + quick-win task.</li>
+          <li>Learning loop: kickoff, checkpoint, submission, feedback.</li>
+          <li>Scoring: status healthy, at-risk, high-intent.</li>
+          <li>Conversion: offer sertifikat dan mentoring premium.</li>
+          <li>Completion: final project + evaluasi akhir.</li>
+          <li>Retention: alumni + referral.</li>
+        </ol>
+
+        <h2>8. Success Metrics</h2>
+        <h3>Activation dan Engagement</h3>
+        <ol>
+          <li>Registration to Discord Join Rate.</li>
+          <li>Onboarding Completion D1-D3.</li>
+          <li>Weekly Active Learners.</li>
+          <li>Assignment Submission Rate.</li>
+          <li>Cohort Completion Rate.</li>
+        </ol>
+
+        <h3>Learning Value</h3>
+        <ol>
+          <li>Rata-rata kualitas assignment.</li>
+          <li>Student satisfaction score.</li>
+          <li>Mentor satisfaction score.</li>
+          <li>Jumlah output portofolio layak publish.</li>
+        </ol>
+
+        <h3>Monetization</h3>
+        <ol>
+          <li>Certificate Conversion Rate.</li>
+          <li>Premium Mentoring Conversion Rate.</li>
+          <li>Revenue per Active Learner.</li>
+          <li>Complaint/refund rate.</li>
+        </ol>
+
+        <h3>Operational Health</h3>
+        <ol>
+          <li>Mentor response SLA.</li>
+          <li>Incident resolution time.</li>
+          <li>Admin workload per 100 learner.</li>
+        </ol>
+
+        <h2>9. Risks dan Mitigasi Singkat</h2>
+        <ol>
+          <li>Drop-off onboarding tinggi → quick-win task 48 jam + reminder.</li>
+          <li>Mentor overload → batching feedback + office hours.</li>
+          <li>Noise channel tinggi → segmentasi channel + thread policy.</li>
+          <li>Tracking data berantakan → single source of truth di Notion.</li>
+          <li>Konversi rendah → perbaiki timing offer dan bukti hasil.</li>
+        </ol>
+
+        <h2>10. Exit Criteria MVP</h2>
+        <p>MVP dinyatakan tervalidasi jika selama minimal 2 cohort berturut:</p>
+        <ol>
+          <li>Engagement stabil atau naik.</li>
+          <li>Completion rate berada di atas target baseline.</li>
+          <li>Ada konversi berbayar yang repeatable.</li>
+          <li>Bottleneck utama stack eksternal teridentifikasi jelas.</li>
+        </ol>
+      </div>
+
+      <!-- 02 - Execution Plan 90 Hari -->
+      <div class="doc-section">
+        <h1>Execution Plan 90 Hari</h1>
+
+        <h2>Cadence Global</h2>
+        <ul>
+          <li>Durasi: 12 minggu.</li>
+          <li>Format: 3 cohort mini x 4 minggu.</li>
+          <li>Ritme mingguan: kickoff, checkpoint, submission, feedback, review KPI.</li>
+        </ul>
+
+        <h2>Fase 1 (Minggu 1-4) - Setup dan Cohort 1</h2>
+        <h3>Target</h3>
+        <ol>
+          <li>Stack operasional siap pakai.</li>
+          <li>Cohort pertama berjalan end-to-end.</li>
+          <li>Baseline KPI terbentuk.</li>
+        </ol>
+
+        <h3>Aktivitas</h3>
+        <ol>
+          <li>Setup Discord server, role, channel, moderation rule.</li>
+          <li>Setup Notion databases dan learning hub.</li>
+          <li>Launch onboarding flow dengan quick-win task.</li>
+          <li>Jalankan weekly challenge dan feedback loop.</li>
+          <li>Jalankan review KPI mingguan.</li>
+        </ol>
+
+        <h3>Deliverables</h3>
+        <ol>
+          <li>Baseline funnel registrasi ke aktivasi.</li>
+          <li>Baseline engagement dan submission.</li>
+          <li>Daftar friksi onboarding dan tindakan perbaikan.</li>
+        </ol>
+
+        <h2>Fase 2 (Minggu 5-8) - Optimasi dan Cohort 2</h2>
+        <h3>Target</h3>
+        <ol>
+          <li>Aktivasi dan retensi membaik dari Cohort 1.</li>
+          <li>Konversi sertifikat mulai terlihat.</li>
+          <li>SOP mentor makin stabil.</li>
+        </ol>
+
+        <h3>Aktivitas</h3>
+        <ol>
+          <li>Perbaiki onboarding copy/struktur.</li>
+          <li>Uji 1-2 eksperimen funnel konversi.</li>
+          <li>Standardisasi feedback rubric.</li>
+          <li>Jalankan sertifikat berbayar untuk peserta eligible.</li>
+        </ol>
+
+        <h3>Deliverables</h3>
+        <ol>
+          <li>Delta KPI Cohort 1 vs Cohort 2.</li>
+          <li>Konversi monetisasi pertama.</li>
+          <li>Risk map operasional terkini.</li>
+        </ol>
+
+        <h2>Fase 3 (Minggu 9-12) - Scale Readiness dan Cohort 3</h2>
+        <h3>Target</h3>
+        <ol>
+          <li>Repeatability metrik inti.</li>
+          <li>Validasi premium mentoring.</li>
+          <li>Draft keputusan build LMS.</li>
+        </ol>
+
+        <h3>Aktivitas</h3>
+        <ol>
+          <li>Jalankan Cohort 3 dengan playbook yang sudah distabilkan.</li>
+          <li>Jalankan premium mentoring batch kecil.</li>
+          <li>Audit bottleneck Discord/Notion.</li>
+          <li>Susun decision memo build vs no-build.</li>
+        </ol>
+
+        <h3>Deliverables</h3>
+        <ol>
+          <li>Komparasi 3 cohort.</li>
+          <li>Unit economics awal.</li>
+          <li>Keputusan strategis fase selanjutnya.</li>
+        </ol>
+
+        <h2>Weekly Runbook (Template)</h2>
+        <h3>Senin</h3>
+        <ol>
+          <li>Publish kickoff challenge.</li>
+          <li>Jelaskan objective, deliverable, due date, rubric.</li>
+        </ol>
+
+        <h3>Rabu</h3>
+        <ol>
+          <li>Jalankan checkpoint.</li>
+          <li>Identifikasi at-risk learner.</li>
+          <li>Aktifkan support intervensi.</li>
+        </ol>
+
+        <h3>Jumat</h3>
+        <ol>
+          <li>Reminder deadline final.</li>
+          <li>Rekap submission masuk.</li>
+        </ol>
+
+        <h3>Sabtu-Minggu</h3>
+        <ol>
+          <li>Mentor review dan feedback.</li>
+          <li>Weekly recap ke seluruh cohort.</li>
+          <li>Internal review KPI dan action plan minggu depan.</li>
+        </ol>
+
+        <h2>Resource Plan Minimum</h2>
+        <ol>
+          <li>1 PM/Program Lead.</li>
+          <li>1 Ops Lead.</li>
+          <li>1 Community Manager.</li>
+          <li>2-5 Mentor (tergantung ukuran cohort).</li>
+          <li>1 Content Curator.</li>
+          <li>1 Growth/Acquisition support.</li>
+        </ol>
+      </div>
+
+      <!-- 03 - Discord Setup -->
+      <div class="doc-section">
+        <h1>Discord Setup dan Template Operasional</h1>
+
+        <h2>1. Struktur Kategori</h2>
+        <ol>
+          <li>START-HERE</li>
+          <li>ANNOUNCEMENTS</li>
+          <li>LEARNING</li>
+          <li>TEAM-SPACES</li>
+          <li>SHOWCASE</li>
+          <li>PREMIUM</li>
+          <li>ALUMNI</li>
+          <li>MOD-OPS (private)</li>
+        </ol>
+
+        <h2>2. Struktur Channel Minimum</h2>
+        <h3>START-HERE</h3>
+        <ul>
+          <li>welcome-and-rules</li>
+          <li>onboarding-checklist</li>
+          <li>faq</li>
+        </ul>
+
+        <h3>ANNOUNCEMENTS</h3>
+        <ul>
+          <li>announcements</li>
+          <li>weekly-calendar</li>
+        </ul>
+
+        <h3>LEARNING</h3>
+        <ul>
+          <li>weekly-challenge</li>
+          <li>mentor-qna</li>
+          <li>resource-sharing</li>
+        </ul>
+
+        <h3>TEAM-SPACES</h3>
+        <ul>
+          <li>team-room-1</li>
+          <li>team-room-2</li>
+          <li>team-room-n</li>
+        </ul>
+
+        <h3>SHOWCASE</h3>
+        <ul>
+          <li>submission-desk</li>
+          <li>demo-day</li>
+        </ul>
+
+        <h3>PREMIUM</h3>
+        <ul>
+          <li>premium-mentoring</li>
+          <li>portfolio-clinic</li>
+        </ul>
+
+        <h3>ALUMNI</h3>
+        <ul>
+          <li>alumni-network</li>
+          <li>opportunities-board</li>
+        </ul>
+
+        <h3>MOD-OPS</h3>
+        <ul>
+          <li>ops-escalation</li>
+          <li>mentor-sync</li>
+        </ul>
+
+        <h2>3. Role Architecture</h2>
+        <ol>
+          <li>applicant</li>
+          <li>active-student</li>
+          <li>premium-student</li>
+          <li>mentor</li>
+          <li>moderator</li>
+          <li>alumni</li>
+        </ol>
+
+        <h2>4. Governance Rules</h2>
+        <ol>
+          <li>Source of truth materi dan deadline ada di Notion.</li>
+          <li>Pengumuman resmi hanya di channel announcements.</li>
+          <li>Pertanyaan teknis melalui thread agar rapi.</li>
+          <li>Dilarang hard selling di DM.</li>
+          <li>SLA respons mentor prioritas &lt;= 24 jam.</li>
+        </ol>
+
+        <h2>5. Template Pesan Mingguan</h2>
+        <h3>Template Welcome</h3>
+        <p>Halo, selamat datang di cohort ini.<br>
+        Langkah awal:<br>
+        1. Baca rules.<br>
+        2. Ikuti onboarding-checklist.<br>
+        3. Buka Learning Hub di Notion.<br>
+        Target 48 jam: selesaikan quick-win task pertama.</p>
+
+        <h3>Template Kickoff Senin</h3>
+        <p>Week [X] dimulai.<br>
+        Objective:<br>
+        1. [Obj-1]<br>
+        2. [Obj-2]<br>
+        Deliverable:<br>
+        1. [Deliverable]<br>
+        Deadline: [Tanggal/Jam/Timezone]<br>
+        Rubric: [link Notion]</p>
+      </div>
+
+      <!-- 04 - Notion Database -->
+      <div class="doc-section">
+        <h1>Notion Database Template</h1>
+
+        <h2>Prinsip Dasar</h2>
+        <ol>
+          <li>Gunakan Notion sebagai single source of truth.</li>
+          <li>Semua status learner dan assignment harus punya owner.</li>
+          <li>Hindari field berlebihan pada fase awal.</li>
+        </ol>
+
+        <h2>1. Database Learners</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>learner_id (text)</li>
+          <li>full_name (text)</li>
+          <li>email (email)</li>
+          <li>country (select)</li>
+          <li>timezone (select)</li>
+          <li>cohort (select)</li>
+          <li>track (select)</li>
+          <li>discord_handle (text)</li>
+          <li>lifecycle_status (select: registered, onboarded, active, at-risk, completed, alumni)</li>
+          <li>risk_flag (select: none, low, medium, high)</li>
+          <li>conversion_stage (select: none, cert-offered, cert-paid, premium-offered, premium-paid)</li>
+        </ol>
+
+        <h2>2. Database Modules</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>module_id</li>
+          <li>week_number</li>
+          <li>title</li>
+          <li>learning_objective</li>
+          <li>material_link</li>
+          <li>challenge_brief</li>
+          <li>due_date</li>
+          <li>mentor_owner</li>
+        </ol>
+
+        <h2>3. Database Assignments</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>assignment_id</li>
+          <li>learner_id (relation ke Learners)</li>
+          <li>module_id (relation ke Modules)</li>
+          <li>submission_link</li>
+          <li>submission_status (not-started, in-progress, submitted, reviewed)</li>
+          <li>score_quality (1-5)</li>
+          <li>score_problem_solving (1-5)</li>
+          <li>score_communication (1-5)</li>
+          <li>feedback_notes</li>
+          <li>reviewed_by</li>
+          <li>reviewed_at</li>
+        </ol>
+
+        <h2>4. Database Attendance</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>learner_id</li>
+          <li>event_name</li>
+          <li>event_date</li>
+          <li>attended (checkbox)</li>
+          <li>participation_score (1-5)</li>
+        </ol>
+
+        <h2>5. Database Monetization</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>learner_id</li>
+          <li>cert_eligible (checkbox)</li>
+          <li>cert_offered_date</li>
+          <li>cert_paid (checkbox)</li>
+          <li>premium_eligible (checkbox)</li>
+          <li>premium_offered_date</li>
+          <li>premium_paid (checkbox)</li>
+          <li>payment_amount (number)</li>
+          <li>payment_date</li>
+        </ol>
+
+        <h2>6. Database Weekly KPI</h2>
+        <p><strong>Field wajib:</strong></p>
+        <ol>
+          <li>cohort</li>
+          <li>week</li>
+          <li>reg_to_join_rate</li>
+          <li>onboarding_completion_rate</li>
+          <li>wal_rate</li>
+          <li>submission_rate</li>
+          <li>completion_forecast</li>
+          <li>cert_conversion_rate</li>
+          <li>premium_conversion_rate</li>
+          <li>total_revenue</li>
+          <li>key_issue_1</li>
+          <li>key_issue_2</li>
+          <li>action_next_week</li>
+        </ol>
+      </div>
+
+      <!-- 05 - SOP Operasional -->
+      <div class="doc-section">
+        <h1>SOP Operasional Program</h1>
+
+        <h2>SOP 1 - Onboarding Peserta</h2>
+        <p><strong>Tujuan:</strong> memastikan peserta aktif dalam 72 jam pertama.</p>
+
+        <h3>Langkah:</h3>
+        <ol>
+          <li>Verifikasi registrasi harian.</li>
+          <li>Kirim undangan Discord maksimal 12 jam.</li>
+          <li>Assign role applicant.</li>
+          <li>Minta peserta menyelesaikan onboarding checklist.</li>
+          <li>Jika quick-win task selesai, upgrade role ke active-student.</li>
+        </ol>
+
+        <h3>SLA:</h3>
+        <ol>
+          <li>Invite: &lt;= 12 jam.</li>
+          <li>Role assignment: &lt;= 6 jam setelah verifikasi.</li>
+        </ol>
+
+        <h2>SOP 2 - Weekly Learning Loop</h2>
+        <h3>Senin</h3>
+        <ol>
+          <li>Publish weekly challenge.</li>
+          <li>Publish objective, deliverable, due date, rubric.</li>
+        </ol>
+
+        <h3>Rabu</h3>
+        <ol>
+          <li>Jalankan checkpoint.</li>
+          <li>Identifikasi at-risk learner.</li>
+          <li>Aktifkan support intervensi.</li>
+        </ol>
+
+        <h3>Jumat</h3>
+        <ol>
+          <li>Reminder deadline.</li>
+          <li>Pantau submission masuk.</li>
+        </ol>
+
+        <h3>Sabtu-Minggu</h3>
+        <ol>
+          <li>Mentor review.</li>
+          <li>Publish feedback.</li>
+          <li>Weekly recap.</li>
+        </ol>
+
+        <h2>SOP 3 - Feedback Mentor</h2>
+        <ol>
+          <li>Gunakan rubric standar.</li>
+          <li>Berikan feedback dengan struktur: Strength, Gap, Next Action.</li>
+          <li>Prioritaskan peserta at-risk dan premium.</li>
+          <li>Semua feedback masuk ke database Assignments.</li>
+        </ol>
+
+        <h3>SLA:</h3>
+        <ol>
+          <li>Feedback assignment: &lt;= 72 jam setelah deadline.</li>
+          <li>Pertanyaan prioritas: &lt;= 24 jam.</li>
+        </ol>
+
+        <h2>SOP 4 - Monetization Flow</h2>
+        <h3>Sertifikat</h3>
+        <ol>
+          <li>Tandai peserta eligible.</li>
+          <li>Kirim offer sertifikat secara personal dan publik terbatas.</li>
+          <li>Verifikasi pembayaran.</li>
+          <li>Issuance sertifikat maksimal 7 hari kerja.</li>
+        </ol>
+
+        <h3>Premium Mentoring</h3>
+        <ol>
+          <li>Tandai high-intent learner.</li>
+          <li>Kirim offer batch terbatas.</li>
+          <li>Lakukan onboarding premium.</li>
+          <li>Catat outcome sesi premium.</li>
+        </ol>
+
+        <h2>SOP 5 - Incident Management</h2>
+        <ol>
+          <li>Klasifikasi severity: low, medium, high.</li>
+          <li>Assign owner penanganan.</li>
+          <li>Tindakan awal &lt;= 24 jam untuk medium/high.</li>
+          <li>Dokumentasikan root cause dan preventif.</li>
+        </ol>
+
+        <h2>SOP 6 - Data Governance</h2>
+        <ol>
+          <li>Data update harian di Notion.</li>
+          <li>Cut-off data mingguan: Minggu 21:00 WIB.</li>
+          <li>Hanya KPI owner yang boleh lock scorecard.</li>
+          <li>Revisi data setelah lock harus melalui catatan audit.</li>
+        </ol>
+      </div>
+
+      <!-- 06 - KPI & Experiment -->
+      <div class="doc-section">
+        <h1>KPI Dashboard dan Experiment Log</h1>
+
+        <h2>1. KPI Scorecard Mingguan</h2>
+        <table>
+          <tr>
+            <th>Metric</th>
+            <th>Definisi</th>
+            <th>Rumus</th>
+            <th>Target Awal</th>
+          </tr>
+          <tr>
+            <td>Reg to Join Rate</td>
+            <td>Rasio registran yang join Discord</td>
+            <td>join_discord / total_registrasi</td>
+            <td>&gt; 60%</td>
+          </tr>
+          <tr>
+            <td>Onboarding Completion D1-D3</td>
+            <td>Rasio peserta selesai checklist awal</td>
+            <td>onboarding_complete / join_discord</td>
+            <td>&gt; 50%</td>
+          </tr>
+          <tr>
+            <td>Weekly Active Learners (WAL)</td>
+            <td>Peserta aktif per minggu</td>
+            <td>active_learners / join_discord</td>
+            <td>&gt; 40%</td>
+          </tr>
+          <tr>
+            <td>Submission Rate</td>
+            <td>Rasio submit tugas</td>
+            <td>submit_count / active_learners</td>
+            <td>&gt; 35%</td>
+          </tr>
+          <tr>
+            <td>Certificate Conversion Rate</td>
+            <td>Rasio eligible yang bayar sertifikat</td>
+            <td>cert_paid / cert_eligible</td>
+            <td>5-10%</td>
+          </tr>
+        </table>
+
+        <h2>2. Dashboard Views yang Wajib Ada</h2>
+        <ol>
+          <li>Funnel Overview.</li>
+          <li>Engagement Weekly Trend.</li>
+          <li>Monetization Snapshot.</li>
+          <li>At-Risk Learners.</li>
+          <li>Mentor SLA Tracker.</li>
+        </ol>
+
+        <h2>3. Weekly Review Template</h2>
+        <h3>Bagian A - Ringkasan Angka</h3>
+        <ol>
+          <li>Metric naik: [isi]</li>
+          <li>Metric turun: [isi]</li>
+          <li>Metric kritikal: [isi]</li>
+        </ol>
+
+        <h3>Bagian B - Diagnosis</h3>
+        <ol>
+          <li>Penyebab utama performa minggu ini.</li>
+          <li>Hambatan operasional terbesar.</li>
+        </ol>
+
+        <h3>Bagian C - Keputusan</h3>
+        <ol>
+          <li>Eksperimen minggu depan.</li>
+          <li>Owner dan due date.</li>
+          <li>Risiko yang dipantau.</li>
+        </ol>
+
+        <h2>4. Rules of Experimentation</h2>
+        <ol>
+          <li>Maksimal 2 eksperimen aktif per minggu.</li>
+          <li>Tentukan metrik dan baseline sebelum run.</li>
+          <li>Simpan keputusan akhir pada experiment log.</li>
+          <li>Hasil buruk tetap dicatat sebagai pembelajaran.</li>
+        </ol>
+      </div>
+
+      <!-- 07 - Decision Memo -->
+      <div class="doc-section">
+        <h1>Decision Memo Template - Build LMS atau Lanjut Stack Eksternal</h1>
+
+        <h2>1. Tujuan Memo</h2>
+        <p>Dokumen ini dipakai setelah Cohort 3 untuk menentukan langkah fase berikutnya:</p>
+        <ol>
+          <li>Bangun LMS internal.</li>
+          <li>Lanjut optimasi Discord + Notion.</li>
+          <li>Hybrid approach bertahap.</li>
+        </ol>
+
+        <h2>2. Input Data Wajib</h2>
+        <ol>
+          <li>KPI komparasi Cohort 1, 2, 3.</li>
+          <li>Ringkasan monetisasi per cohort.</li>
+          <li>Ringkasan bottleneck operasional.</li>
+          <li>Estimasi biaya dan waktu membangun LMS.</li>
+          <li>Kapasitas tim produk/engineering.</li>
+        </ol>
+
+        <h2>3. Decision Criteria</h2>
+        <h3>Gate A - Demand dan Engagement</h3>
+        <ol>
+          <li>WAL stabil atau meningkat di &gt;= 2 cohort berurutan.</li>
+          <li>Completion rate memenuhi target minimum.</li>
+        </ol>
+
+        <h3>Gate B - Monetization</h3>
+        <ol>
+          <li>Certificate conversion repeatable.</li>
+          <li>Premium conversion repeatable.</li>
+          <li>Revenue per active learner menunjukkan tren sehat.</li>
+        </ol>
+
+        <h3>Gate C - Operational Bottleneck</h3>
+        <ol>
+          <li>Ada bottleneck besar yang tidak bisa diselesaikan lewat process/tooling ringan.</li>
+          <li>Bottleneck berdampak material pada retensi, conversion, atau margin.</li>
+        </ol>
+
+        <h3>Gate D - Capability</h3>
+        <ol>
+          <li>Tim siap membangun dan memelihara LMS.</li>
+          <li>Ada roadmap realistis 2-3 kuartal.</li>
+        </ol>
+
+        <h2>4. Opsi Keputusan</h2>
+        <h3>Opsi 1 - Build LMS Sekarang</h3>
+        <p><strong>Kondisi:</strong></p>
+        <ol>
+          <li>Semua gate terpenuhi.</li>
+          <li>Potensi uplift bisnis signifikan.</li>
+        </ol>
+
+        <h3>Opsi 2 - Optimasi Stack Eksternal Dulu</h3>
+        <p><strong>Kondisi:</strong></p>
+        <ol>
+          <li>Beberapa gate belum terpenuhi.</li>
+          <li>Masih ada ruang optimasi proses.</li>
+        </ol>
+
+        <h3>Opsi 3 - Hybrid Bertahap</h3>
+        <p><strong>Kondisi:</strong></p>
+        <ol>
+          <li>Bottleneck spesifik bisa diatasi dengan micro-product internal.</li>
+        </ol>
+      </div>
+
+      <!-- 08 - Go-Live Checklist -->
+      <div class="doc-section">
+        <h1>Go-Live Checklist</h1>
+
+        <h2>1. Strategic Readiness</h2>
+        <ol>
+          <li>Value proposition final disetujui.</li>
+          <li>Segment target dan positioning jelas.</li>
+          <li>Pricing sertifikat dan premium disetujui.</li>
+        </ol>
+
+        <h2>2. Program Readiness</h2>
+        <ol>
+          <li>Kurikulum 4 minggu final.</li>
+          <li>Assignment brief dan rubric final.</li>
+          <li>Mentor roster dan jadwal office hour final.</li>
+        </ol>
+
+        <h2>3. Discord Readiness</h2>
+        <ol>
+          <li>Semua channel aktif dan rapi.</li>
+          <li>Role permission sudah diuji.</li>
+          <li>Template pesan mingguan sudah siap.</li>
+          <li>Moderation flow dan escalation path berjalan.</li>
+        </ol>
+
+        <h2>4. Notion Readiness</h2>
+        <ol>
+          <li>Semua database dibuat dan saling terhubung.</li>
+          <li>Dashboard KPI siap.</li>
+          <li>Semua template halaman learner/assignment siap.</li>
+          <li>Data owner setiap table ditunjuk.</li>
+        </ol>
+
+        <h2>5. Monetization Readiness</h2>
+        <ol>
+          <li>Eligibility rule sertifikat terpublikasi.</li>
+          <li>Alur pembayaran sudah diuji.</li>
+          <li>SOP issuance sertifikat siap.</li>
+          <li>Offer copy premium siap.</li>
+        </ol>
+
+        <h2>6. Ops and Compliance Readiness</h2>
+        <ol>
+          <li>SLA mentor dipahami semua mentor.</li>
+          <li>SOP incident management disosialisasikan.</li>
+          <li>Data governance dan jadwal cut-off disepakati.</li>
+        </ol>
+
+        <h2>7. Launch Day Checklist</h2>
+        <ol>
+          <li>Kirim welcome message cohort.</li>
+          <li>Verifikasi semua peserta bisa akses Notion.</li>
+          <li>Publish weekly kickoff.</li>
+          <li>Pantau issue 24 jam pertama.</li>
+        </ol>
+
+        <h2>8. Post Launch 72 Jam</h2>
+        <ol>
+          <li>Hitung onboarding completion D1-D3.</li>
+          <li>Identifikasi at-risk learner.</li>
+          <li>Jalankan intervensi awal.</li>
+          <li>Review issue dan patch cepat.</li>
+        </ol>
+
+        <h2>9. Sign-Off</h2>
+        <p>PM: [nama] / [tanggal]<br>
+        Ops Lead: [nama] / [tanggal]<br>
+        Mentor Lead: [nama] / [tanggal]<br>
+        Community Manager: [nama] / [tanggal]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-to-top" onclick="scrollToTop()">↑</div>
+
+  <script>
+    const sections = document.querySelectorAll('.doc-section');
+    const navItems = document.querySelectorAll('.nav-item');
+    const backToTop = document.querySelector('.back-to-top');
+
+    function showDoc(index) {
+      // Hide all sections
+      sections.forEach(s => s.classList.remove('active'));
+      navItems.forEach(n => n.classList.remove('active'));
+      
+      // Show selected section
+      sections[index].classList.add('active');
+      navItems[index].classList.add('active');
+      
+      // Scroll to top
+      document.querySelector('.content').scrollTop = 0;
+    }
+
+    function scrollToTop() {
+      document.querySelector('.content').scrollTop = 0;
+    }
+
+    // Show back-to-top button on scroll
+    document.querySelector('.content').addEventListener('scroll', () => {
+      const content = document.querySelector('.content');
+      backToTop.classList.toggle('visible', content.scrollTop > 300);
+    });
+  </script>
+</body>
+</html>
