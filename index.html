@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRD-LMS | Project-Based Learning Program</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --paper: #fffdf8;
+      --ink: #1b1b1b;
+      --muted: #5b5b5b;
+      --accent: #0f766e;
+      --accent-2: #be123c;
+      --line: #ded6c8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 20%, #f8f2e8 0%, transparent 35%),
+        radial-gradient(circle at 90% 80%, #efe3d5 0%, transparent 30%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 48px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin-top: 28px;
+      font-size: 1.2rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    p { color: var(--muted); }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.84rem;
+      color: #0b4f49;
+      background: #dff4f1;
+      border: 1px solid #b8e5df;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .doc {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .doc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+      border-color: #cfc4b2;
+    }
+
+    .cta {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--accent-2);
+      border-color: #f3cad5;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <span class="badge">MVP Operating Pack</span>
+      <h1>PRD-LMS: Project-Based Learning Program</h1>
+      <p>
+        Ini adalah paket PRD end-to-end untuk menjalankan program pembelajaran berbasis proyek nyata
+        skala internasional menggunakan stack MVP: Discord + Notion.
+      </p>
+
+      <h2>Tujuan 90 Hari</h2>
+      <ul>
+        <li>Validasi demand global dan engagement learner.</li>
+        <li>Buktikan monetisasi freemium: sertifikat dan mentoring premium.</li>
+        <li>Tentukan keputusan build LMS atau optimasi stack eksternal.</li>
+      </ul>
+
+      <h2>Dokumen Utama</h2>
+      <div class="grid">
+        <a class="doc" href="docs/01-PRD-Master.md">01 - PRD Master</a>
+        <a class="doc" href="docs/02-Execution-Plan-90-Hari.md">02 - Execution Plan 90 Hari</a>
+        <a class="doc" href="docs/03-Discord-Setup-dan-Template.md">03 - Discord Setup dan Template</a>
+        <a class="doc" href="docs/04-Notion-Database-Template.md">04 - Notion Database Template</a>
+        <a class="doc" href="docs/05-SOP-Operasional.md">05 - SOP Operasional</a>
+        <a class="doc" href="docs/06-KPI-Dashboard-dan-Experiment-Log.md">06 - KPI dan Experiment Log</a>
+        <a class="doc" href="docs/07-Decision-Memo-Build-LMS.md">07 - Decision Memo Build LMS</a>
+        <a class="doc" href="docs/08-Go-Live-Checklist.md">08 - Go-Live Checklist</a>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/otaruram/PRD-LMS">Lihat Repository</a>
+        <a class="btn btn-secondary" href="README.md">Buka README</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
