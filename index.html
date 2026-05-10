@@ -6,13 +6,13 @@
   <title>PRD-LMS | Project-Based Learning Program</title>
   <style>
     :root {
-      --bg: #f4efe6;
-      --paper: #fffdf8;
-      --ink: #1b1b1b;
-      --muted: #5b5b5b;
-      --accent: #0f766e;
-      --accent-2: #be123c;
-      --line: #ded6c8;
+      --bg: #0d0d0d;
+      --paper: #161616;
+      --ink: #f2f2f2;
+      --muted: #bbbbbb;
+      --accent: #ffffff;
+      --accent-2: #d9d9d9;
+      --line: #2a2a2a;
     }
 
     * { box-sizing: border-box; }
@@ -21,8 +21,8 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 10% 20%, #f8f2e8 0%, transparent 35%),
-        radial-gradient(circle at 90% 80%, #efe3d5 0%, transparent 30%),
+        radial-gradient(circle at 15% 10%, #1d1d1d 0%, transparent 35%),
+        radial-gradient(circle at 85% 85%, #1a1a1a 0%, transparent 30%),
         var(--bg);
       line-height: 1.6;
     }
@@ -38,7 +38,7 @@
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 28px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
     }
 
     h1 {
@@ -59,9 +59,9 @@
     .badge {
       display: inline-block;
       font-size: 0.84rem;
-      color: #0b4f49;
-      background: #dff4f1;
-      border: 1px solid #b8e5df;
+      color: #0f0f0f;
+      background: #ffffff;
+      border: 1px solid #ffffff;
       padding: 4px 10px;
       border-radius: 999px;
       margin-bottom: 12px;
@@ -86,14 +86,14 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 12px;
-      background: #fff;
+      background: #111111;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .doc:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-      border-color: #cfc4b2;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45);
+      border-color: #4a4a4a;
     }
 
     .cta {
@@ -114,13 +114,13 @@
 
     .btn-primary {
       background: var(--accent);
-      color: #fff;
+      color: #0d0d0d;
     }
 
     .btn-secondary {
-      background: #fff;
+      background: #101010;
       color: var(--accent-2);
-      border-color: #f3cad5;
+      border-color: #3a3a3a;
     }
   </style>
 </head>
@@ -143,6 +143,7 @@
 
       <h2>Dokumen Utama</h2>
       <div class="grid">
+        <a class="doc" href="docs/README.md">00 - Docs README</a>
         <a class="doc" href="docs/01-PRD-Master.md">01 - PRD Master</a>
         <a class="doc" href="docs/02-Execution-Plan-90-Hari.md">02 - Execution Plan 90 Hari</a>
         <a class="doc" href="docs/03-Discord-Setup-dan-Template.md">03 - Discord Setup dan Template</a>
